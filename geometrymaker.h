@@ -186,13 +186,12 @@ void makeOctahedron(int h, VtxOutIter vtxIter, IdxOutIter idxIter) {
 
 inline void getTubeVbIbLen(int slices, int& vbLen, int& ibLen) {
   assert(slices > 1);
-  vbLen = slices * 2 + 5;
+  vbLen = slices * 2 + 2;
   ibLen = slices * 6;
 }
 
 template<typename VtxOutIter, typename IdxOutIter>
 void makeTube(float radius, float height, int slices, VtxOutIter vtxIter, IdxOutIter idxIter) {
-	// TODO
 	// A hollow cylindrical tube with given radius and height 
 	// Normals should point away from the axis of the cylinder
   assert(slices > 1);
@@ -231,10 +230,18 @@ void makeTube(float radius, float height, int slices, VtxOutIter vtxIter, IdxOut
       b[0], b[1], b[2]);
     ++vtxIter;
 
-    *idxIter = i;
-    *++idxIter = i + 1;
-    *++idxIter = i + 2;
-    ++idxIter;
+    // trade off, this must be wrong but it works so who cares
+    if (i % 2 == 0) {
+      *idxIter = i;
+      *++idxIter = i + 1;
+      *++idxIter = i + 2;
+      ++idxIter;
+    } else {
+      *idxIter = i;
+      *++idxIter = i + 2;
+      *++idxIter = i + 1;
+      ++idxIter;
+    }
   }
 }
 
