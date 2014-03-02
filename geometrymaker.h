@@ -115,13 +115,13 @@ inline void getOctahedronVbIbLen(int& vbLen, int& ibLen) {
 
 template<typename VtxOutIter, typename IdxOutIter>
 void makeOctahedron(int h, VtxOutIter vtxIter, IdxOutIter idxIter) {
-  // TODO
 	// Vertices should be (+/-h, 0, 0), (0, +/-h, 0) and (0, 0, +/- h).
 	// Normals should point outward and be normal to faces of octahedron.
 
+  // Kinda brute-force, could probably be done better
+
   // 123
   Cvec3f tan(1, 1, 1), bin(1, -1, 1);
-  //                           point        normal   ?     tangent                 binormal?
   { *vtxIter = GenericVertex(+ 0, + h, + 0, 1, 1, 1, 1, 1, tan[0], tan[1], tan[2], bin[0], bin[1], bin[2]); ++vtxIter; };
   { *vtxIter = GenericVertex(+ 0, + 0, + h, 1, 1, 1, 1, 1, tan[0], tan[1], tan[2], bin[0], bin[1], bin[2]); ++vtxIter; };
   { *vtxIter = GenericVertex(+ h, + 0, + 0, 1, 1, 1, 1, 1, tan[0], tan[1], tan[2], bin[0], bin[1], bin[2]); ++vtxIter; };
@@ -185,7 +185,9 @@ void makeOctahedron(int h, VtxOutIter vtxIter, IdxOutIter idxIter) {
 }
 
 inline void getTubeVbIbLen(int slices, int& vbLen, int& ibLen) {
-	// TODO
+  assert(slices > 1);
+  vbLen = slices * 2 + 1;
+  ibLen = slices * 6;
 }
 
 template<typename VtxOutIter, typename IdxOutIter>
@@ -193,6 +195,50 @@ void makeTube(float radius, float height, int slices, VtxOutIter vtxIter, IdxOut
 	// TODO
 	// A hollow cylindrical tube with given radius and height 
 	// Normals should point away from the axis of the cylinder
+
+  assert(slices > 1);
+
+  const double radPerSlice = 2 * CS150_PI / slices;
+
+  using namespace std;
+  vector<double> longSin(slices+1), longCos(slices+1);
+  for (int i = 0; i < slices + 1; ++i) {
+    longSin[i] = sin(radPerSlice * i);
+    longCos[i] = cos(radPerSlice * i);
+  }
+
+  for (int i = 0; i < slices + 1; ++i) {
+    float x = longCos[i];
+    float y = longSin[i];
+    float z = 0;
+
+    Cvec3f n(x, y, z);
+    Cvec3f b(0, 0, 1);
+    Cvec3f t = cross(n, b);
+
+    *vtxIter = GenericVertex(
+      x * radius, y * radius, height,
+      x, y, z,
+      1.0/slices*i, 1.0,
+      t[0], t[1], t[2],
+      b[0], b[1], b[2]);
+    ++vtxIter;
+
+    *vtxIter = GenericVertex(
+      x * radius, y * radius, -height,
+      x, y, z,
+      1.0/slices*i, 1.0,
+      t[0], t[1], t[2],
+      b[0], b[1], b[2]);
+    ++vtxIter;
+
+    if (i < slices) {
+      *idxIter = i;
+      *++idxIter = i + 1;
+      *++idxIter = i + 2;
+      ++idxIter;
+    }
+  }
 }
 
 inline void getSphereVbIbLen(int slices, int stacks, int& vbLen, int& ibLen) {
