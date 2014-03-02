@@ -242,7 +242,7 @@ static void initObjects() {
   getTubeVbIbLen(32, vbLen, ibLen);
   vtx.resize(vbLen);
   idx.resize(ibLen);
-  makeTube(2, 2, 32, vtx.begin(), idx.begin());
+  makeTube(1, 1, 32, vtx.begin(), idx.begin());
   g_tube.reset(new Geometry(&vtx[0], &idx[0], vbLen, ibLen));
 
   // TODO: add octahedron, tube
@@ -302,12 +302,19 @@ static void drawScene() {
 
   g_objectRbt[0] = g_objectRbt[0] * rotatorY; // object 0 rotates around its y-axis
 
-  Matrix4 MVM = invEyeRbt * g_objectRbt[0];
+  Matrix4 MVM = invEyeRbt * g_objectRbt[0] * Matrix4::makeTranslation(Cvec3(2,0,0));
   Matrix4 NMVM = normalMatrix(MVM);
   sendModelViewNormalMatrix(curSS, MVM, NMVM);
   safe_glUniform3f(curSS.h_uColor, 1.0-g_animClock, 0.0, g_animClock); // use clock parameter to color object
   						     // color will cycle once as g_animClock goes from 0 to 1
   g_tube->draw(curSS);
+
+  MVM = invEyeRbt * g_objectRbt[0] * Matrix4::makeTranslation(Cvec3(-2,0,0));
+  NMVM = normalMatrix(MVM);
+  sendModelViewNormalMatrix(curSS, MVM, NMVM);
+  safe_glUniform3f(curSS.h_uColor, 1.0-g_animClock, 0.0, g_animClock); // use clock parameter to color object
+                   // color will cycle once as g_animClock goes from 0 to 1
+  g_octo->draw(curSS);
 
   // TODO: Remove cube. Add octahedron, tube, and sphere to scene and make them chase each other.
 }
