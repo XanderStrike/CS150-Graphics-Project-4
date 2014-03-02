@@ -13,7 +13,14 @@ void main() {
   vec3 toLight2 = uLight2 - vec3(vPosition);
   toLight = normalize(toLight);
   toLight2 = normalize(toLight2);
-  vec3 normal = normalize(vNormal);
+
+  vec3 normal;
+
+  if ( gl_FrontFacing ) {  
+    normal = normalize(vNormal);
+  } else {
+    normal = normalize(vec3(-vNormal.x, -vNormal.y, -vNormal.z));
+  }
 
   float diffuse = max(0.0, dot(normal, toLight));
   diffuse += max(0.0, dot(normal, toLight2));
