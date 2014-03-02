@@ -186,7 +186,7 @@ void makeOctahedron(int h, VtxOutIter vtxIter, IdxOutIter idxIter) {
 
 inline void getTubeVbIbLen(int slices, int& vbLen, int& ibLen) {
   assert(slices > 1);
-  vbLen = slices * 2 + 1;
+  vbLen = slices * 2 + 5;
   ibLen = slices * 6;
 }
 
@@ -195,7 +195,6 @@ void makeTube(float radius, float height, int slices, VtxOutIter vtxIter, IdxOut
 	// TODO
 	// A hollow cylindrical tube with given radius and height 
 	// Normals should point away from the axis of the cylinder
-
   assert(slices > 1);
 
   const double radPerSlice = 2 * CS150_PI / slices;
@@ -207,7 +206,7 @@ void makeTube(float radius, float height, int slices, VtxOutIter vtxIter, IdxOut
     longCos[i] = cos(radPerSlice * i);
   }
 
-  for (int i = 0; i < slices + 1; ++i) {
+  for (int i = 0; i < slices*2; ++i) {
     float x = longCos[i];
     float y = longSin[i];
     float z = 0;
@@ -232,12 +231,10 @@ void makeTube(float radius, float height, int slices, VtxOutIter vtxIter, IdxOut
       b[0], b[1], b[2]);
     ++vtxIter;
 
-    if (i < slices) {
-      *idxIter = i;
-      *++idxIter = i + 1;
-      *++idxIter = i + 2;
-      ++idxIter;
-    }
+    *idxIter = i;
+    *++idxIter = i + 1;
+    *++idxIter = i + 2;
+    ++idxIter;
   }
 }
 
