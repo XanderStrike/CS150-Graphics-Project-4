@@ -133,19 +133,19 @@ void makeOctahedron(int h, VtxOutIter vtxIter, IdxOutIter idxIter) {
   { *vtxIter = GenericVertex(+ h, + 0, + 0, 1, 1, -1, 1, 1, tan[0], tan[1], tan[2], bin[0], bin[1], bin[2]); ++vtxIter; };
   { *vtxIter = GenericVertex(+ 0, + 0, - h, 1, 1, -1, 1, 1, tan[0], tan[1], tan[2], bin[0], bin[1], bin[2]); ++vtxIter; };
 
-  // 154
+  // 145
   tan = Cvec3f(-1, 1, -1);
   bin = Cvec3f(1, 1, 1);
   { *vtxIter = GenericVertex(+ 0, + h, + 0, -1, 1, -1, 1, 1, tan[0], tan[1], tan[2], bin[0], bin[1], bin[2]); ++vtxIter; };
-  { *vtxIter = GenericVertex(- h, + 0, + 0, -1, 1, -1, 1, 1, tan[0], tan[1], tan[2], bin[0], bin[1], bin[2]); ++vtxIter; };
   { *vtxIter = GenericVertex(+ 0, + 0, - h, -1, 1, -1, 1, 1, tan[0], tan[1], tan[2], bin[0], bin[1], bin[2]); ++vtxIter; };
+  { *vtxIter = GenericVertex(- h, + 0, + 0, -1, 1, -1, 1, 1, tan[0], tan[1], tan[2], bin[0], bin[1], bin[2]); ++vtxIter; };
 
-  // 125
+  // 152
   tan = Cvec3f(-1, 1, 1);
   bin = Cvec3f(1, 1, 1);
   { *vtxIter = GenericVertex(+ 0, + h, + 0, -1, 1, 1, 1, 1, tan[0], tan[1], tan[2], bin[0], bin[1], bin[2]); ++vtxIter; };
-  { *vtxIter = GenericVertex(+ 0, + 0, + h, -1, 1, 1, 1, 1, tan[0], tan[1], tan[2], bin[0], bin[1], bin[2]); ++vtxIter; };
   { *vtxIter = GenericVertex(- h, + 0, + 0, -1, 1, 1, 1, 1, tan[0], tan[1], tan[2], bin[0], bin[1], bin[2]); ++vtxIter; };
+  { *vtxIter = GenericVertex(+ 0, + 0, + h, -1, 1, 1, 1, 1, tan[0], tan[1], tan[2], bin[0], bin[1], bin[2]); ++vtxIter; };
 
   // 263
   tan = Cvec3f(1, -1, 1);
