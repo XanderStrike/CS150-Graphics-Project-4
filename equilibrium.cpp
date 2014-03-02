@@ -204,7 +204,7 @@ struct Geometry {
 };
 
 // Vertex buffer and index buffer associated with the different geometries
-static shared_ptr<Geometry> g_cube, g_sphere; 
+static shared_ptr<Geometry> g_cube, g_sphere, g_octo; 
 
 // --------- Scene
 
@@ -232,6 +232,12 @@ static void initObjects() {
   idx.resize(ibLen);
   makeSphere(1.0, 20, 20, vtx.begin(), idx.begin());
   g_sphere.reset(new Geometry(&vtx[0], &idx[0], vbLen, ibLen));
+
+  getOctahedronVbIbLen(vbLen, ibLen);
+  vtx.resize(vbLen);
+  idx.resize(ibLen);
+  makeOctahedron(2, vtx.begin(), idx.begin());
+  g_octo.reset(new Geometry(&vtx[0], &idx[0], vbLen, ibLen));
 
   // TODO: add octahedron, tube
 }
@@ -295,7 +301,7 @@ static void drawScene() {
   sendModelViewNormalMatrix(curSS, MVM, NMVM);
   safe_glUniform3f(curSS.h_uColor, 1.0-g_animClock, 0.0, g_animClock); // use clock parameter to color object
   						     // color will cycle once as g_animClock goes from 0 to 1
-  g_cube->draw(curSS);
+  g_octo->draw(curSS);
 
   // TODO: Remove cube. Add octahedron, tube, and sphere to scene and make them chase each other.
 }

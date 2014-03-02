@@ -120,60 +120,60 @@ void makeOctahedron(int h, VtxOutIter vtxIter, IdxOutIter idxIter) {
 	// Normals should point outward and be normal to faces of octahedron.
 
   // 123
-  Cvec3f tan(1, 1, 1), bin(0, -1, 1);
+  Cvec3f tan(1, 1, 1), bin(1, -1, 1);
   //                           point        normal   ?     tangent                 binormal?
-  { *vtxIter = GenericVertex(+ 0, + h, + 0, 0, 1, 0, 1, 1, tan[0], tan[1], tan[2], bin[0], bin[1], bin[2]); ++vtxIter; };
-  { *vtxIter = GenericVertex(+ 0, + 0, + h, 0, 0, 1, 1, 1, tan[0], tan[1], tan[2], bin[0], bin[1], bin[2]); ++vtxIter; };
-  { *vtxIter = GenericVertex(+ h, + 0, + 0, 1, 0, 0, 1, 1, tan[0], tan[1], tan[2], bin[0], bin[1], bin[2]); ++vtxIter; };
+  { *vtxIter = GenericVertex(+ 0, + h, + 0, 1, 1, 1, 1, 1, tan[0], tan[1], tan[2], bin[0], bin[1], bin[2]); ++vtxIter; };
+  { *vtxIter = GenericVertex(+ 0, + 0, + h, 1, 1, 1, 1, 1, tan[0], tan[1], tan[2], bin[0], bin[1], bin[2]); ++vtxIter; };
+  { *vtxIter = GenericVertex(+ h, + 0, + 0, 1, 1, 1, 1, 1, tan[0], tan[1], tan[2], bin[0], bin[1], bin[2]); ++vtxIter; };
 
   // 134
   tan = Cvec3f(1, 1, -1);
-  bin = Cvec3f(1, -1, 0);
-  { *vtxIter = GenericVertex(+ 0, + h, + 0, 0, 1, 0, 1, 1, tan[0], tan[1], tan[2], bin[0], bin[1], bin[2]); ++vtxIter; };
-  { *vtxIter = GenericVertex(+ h, + 0, + 0, 1, 0, 0, 1, 1, tan[0], tan[1], tan[2], bin[0], bin[1], bin[2]); ++vtxIter; };
-  { *vtxIter = GenericVertex(+ 0, + 0, - h, 0, 0, -1, 1, 1, tan[0], tan[1], tan[2], bin[0], bin[1], bin[2]); ++vtxIter; };
+  bin = Cvec3f(1, 1, 1);
+  { *vtxIter = GenericVertex(+ 0, + h, + 0, 1, 1, -1, 1, 1, tan[0], tan[1], tan[2], bin[0], bin[1], bin[2]); ++vtxIter; };
+  { *vtxIter = GenericVertex(+ h, + 0, + 0, 1, 1, -1, 1, 1, tan[0], tan[1], tan[2], bin[0], bin[1], bin[2]); ++vtxIter; };
+  { *vtxIter = GenericVertex(+ 0, + 0, - h, 1, 1, -1, 1, 1, tan[0], tan[1], tan[2], bin[0], bin[1], bin[2]); ++vtxIter; };
 
   // 154
   tan = Cvec3f(-1, 1, -1);
-  bin = Cvec3f(1, -1, 0);
-  { *vtxIter = GenericVertex(+ 0, + h, + 0, 0, 1, 0, 1, 1, tan[0], tan[1], tan[2], bin[0], bin[1], bin[2]); ++vtxIter; };
-  { *vtxIter = GenericVertex(- h, + 0, + 0, -1, 0, 0, 1, 1, tan[0], tan[1], tan[2], bin[0], bin[1], bin[2]); ++vtxIter; };
-  { *vtxIter = GenericVertex(+ 0, + 0, - h, 0, 0, -1, 1, 1, tan[0], tan[1], tan[2], bin[0], bin[1], bin[2]); ++vtxIter; };
+  bin = Cvec3f(1, 1, 1);
+  { *vtxIter = GenericVertex(+ 0, + h, + 0, -1, 1, -1, 1, 1, tan[0], tan[1], tan[2], bin[0], bin[1], bin[2]); ++vtxIter; };
+  { *vtxIter = GenericVertex(- h, + 0, + 0, -1, 1, -1, 1, 1, tan[0], tan[1], tan[2], bin[0], bin[1], bin[2]); ++vtxIter; };
+  { *vtxIter = GenericVertex(+ 0, + 0, - h, -1, 1, -1, 1, 1, tan[0], tan[1], tan[2], bin[0], bin[1], bin[2]); ++vtxIter; };
 
   // 125
   tan = Cvec3f(-1, 1, 1);
-  bin = Cvec3f(0, -1, 1);
-  { *vtxIter = GenericVertex(+ 0, + h, + 0, 0, 1, 0, 1, 1, tan[0], tan[1], tan[2], bin[0], bin[1], bin[2]); ++vtxIter; };
-  { *vtxIter = GenericVertex(+ 0, + 0, + h, 0, 0, 1, 1, 1, tan[0], tan[1], tan[2], bin[0], bin[1], bin[2]); ++vtxIter; };
-  { *vtxIter = GenericVertex(- h, + 0, + 0, -1, 0, 0, 1, 1, tan[0], tan[1], tan[2], bin[0], bin[1], bin[2]); ++vtxIter; };
+  bin = Cvec3f(1, 1, 1);
+  { *vtxIter = GenericVertex(+ 0, + h, + 0, -1, 1, 1, 1, 1, tan[0], tan[1], tan[2], bin[0], bin[1], bin[2]); ++vtxIter; };
+  { *vtxIter = GenericVertex(+ 0, + 0, + h, -1, 1, 1, 1, 1, tan[0], tan[1], tan[2], bin[0], bin[1], bin[2]); ++vtxIter; };
+  { *vtxIter = GenericVertex(- h, + 0, + 0, -1, 1, 1, 1, 1, tan[0], tan[1], tan[2], bin[0], bin[1], bin[2]); ++vtxIter; };
 
   // 263
   tan = Cvec3f(1, -1, 1);
-  bin = Cvec3f(0, -1, -1);
-  { *vtxIter = GenericVertex(+ 0, + 0, + h, 0, 0, 1, 1, 1, tan[0], tan[1], tan[2], bin[0], bin[1], bin[2]); ++vtxIter; };
-  { *vtxIter = GenericVertex(+ 0, - h, + 0, 0, -1, 0, 1, 1, tan[0], tan[1], tan[2], bin[0], bin[1], bin[2]); ++vtxIter; };
-  { *vtxIter = GenericVertex(+ h, + 0, + 0, 1, 0, 0, 1, 1, tan[0], tan[1], tan[2], bin[0], bin[1], bin[2]); ++vtxIter; };
+  bin = Cvec3f(1, 1, 1);
+  { *vtxIter = GenericVertex(+ 0, + 0, + h, 1, -1, 1, 1, 1, tan[0], tan[1], tan[2], bin[0], bin[1], bin[2]); ++vtxIter; };
+  { *vtxIter = GenericVertex(+ 0, - h, + 0, 1, -1, 1, 1, 1, tan[0], tan[1], tan[2], bin[0], bin[1], bin[2]); ++vtxIter; };
+  { *vtxIter = GenericVertex(+ h, + 0, + 0, 1, -1, 1, 1, 1, tan[0], tan[1], tan[2], bin[0], bin[1], bin[2]); ++vtxIter; };
 
   // 364
   tan = Cvec3f(1, -1, -1);
-  bin = Cvec3f(-1, -1, 0);
-  { *vtxIter = GenericVertex(+ h, + 0, + 0, 1, 0, 0, 1, 1, tan[0], tan[1], tan[2], bin[0], bin[1], bin[2]); ++vtxIter; };
-  { *vtxIter = GenericVertex(+ 0, - h, + 0, 0, -1, 0, 1, 1, tan[0], tan[1], tan[2], bin[0], bin[1], bin[2]); ++vtxIter; };
-  { *vtxIter = GenericVertex(+ 0, + 0, - h, 0, 0, -1, 1, 1, tan[0], tan[1], tan[2], bin[0], bin[1], bin[2]); ++vtxIter; };
+  bin = Cvec3f(1, 1, 1);
+  { *vtxIter = GenericVertex(+ h, + 0, + 0, 1, -1, -1, 1, 1, tan[0], tan[1], tan[2], bin[0], bin[1], bin[2]); ++vtxIter; };
+  { *vtxIter = GenericVertex(+ 0, - h, + 0, 1, -1, -1, 1, 1, tan[0], tan[1], tan[2], bin[0], bin[1], bin[2]); ++vtxIter; };
+  { *vtxIter = GenericVertex(+ 0, + 0, - h, 1, -1, -1, 1, 1, tan[0], tan[1], tan[2], bin[0], bin[1], bin[2]); ++vtxIter; };
 
   // 465
   tan = Cvec3f(-1, -1, -1);
-  bin = Cvec3f(-1, -1, 0);
-  { *vtxIter = GenericVertex(+ 0, + 0, - h, 0, 0, -1, 1, 1, tan[0], tan[1], tan[2], bin[0], bin[1], bin[2]); ++vtxIter; };
-  { *vtxIter = GenericVertex(+ 0, - h, + 0, 0, -1, 0, 1, 1, tan[0], tan[1], tan[2], bin[0], bin[1], bin[2]); ++vtxIter; };
-  { *vtxIter = GenericVertex(- h, + 0, + 0, -1, 0, 0, 1, 1, tan[0], tan[1], tan[2], bin[0], bin[1], bin[2]); ++vtxIter; };
+  bin = Cvec3f(1, 1, 1);
+  { *vtxIter = GenericVertex(+ 0, + 0, - h, -1, -1, -1, 1, 1, tan[0], tan[1], tan[2], bin[0], bin[1], bin[2]); ++vtxIter; };
+  { *vtxIter = GenericVertex(+ 0, - h, + 0, -1, -1, -1, 1, 1, tan[0], tan[1], tan[2], bin[0], bin[1], bin[2]); ++vtxIter; };
+  { *vtxIter = GenericVertex(- h, + 0, + 0, -1, -1, -1, 1, 1, tan[0], tan[1], tan[2], bin[0], bin[1], bin[2]); ++vtxIter; };
 
   // 562
   tan = Cvec3f(-1, -1, 1);
-  bin = Cvec3f(1, -1, 0);
-  { *vtxIter = GenericVertex(- h, + 0, + 0, -1, 0, 0, 1, 1, tan[0], tan[1], tan[2], bin[0], bin[1], bin[2]); ++vtxIter; };
-  { *vtxIter = GenericVertex(+ 0, - h, + 0, 0, -1, 0, 1, 1, tan[0], tan[1], tan[2], bin[0], bin[1], bin[2]); ++vtxIter; };
-  { *vtxIter = GenericVertex(+ 0, + 0, + h, 0, 0, 1, 1, 1, tan[0], tan[1], tan[2], bin[0], bin[1], bin[2]); ++vtxIter; };
+  bin = Cvec3f(1, 1, 1);
+  { *vtxIter = GenericVertex(- h, + 0, + 0, -1, -1, 1, 1, 1, tan[0], tan[1], tan[2], bin[0], bin[1], bin[2]); ++vtxIter; };
+  { *vtxIter = GenericVertex(+ 0, - h, + 0, -1, -1, 1, 1, 1, tan[0], tan[1], tan[2], bin[0], bin[1], bin[2]); ++vtxIter; };
+  { *vtxIter = GenericVertex(+ 0, + 0, + h, -1, -1, 1, 1, 1, tan[0], tan[1], tan[2], bin[0], bin[1], bin[2]); ++vtxIter; };
 
 
   for (int v = 0; v < 24; v +=3) {
