@@ -120,6 +120,8 @@ void makeOctahedron(int h, VtxOutIter vtxIter, IdxOutIter idxIter) {
 
   // Kinda brute-force, could probably be done better
 
+  h = h/2;
+
   // 123
   Cvec3f tan(1, 1, 1), bin(1, -1, 1);
   { *vtxIter = GenericVertex(+ 0, + h, + 0, 1, 1, 1, 1, 1, tan[0], tan[1], tan[2], bin[0], bin[1], bin[2]); ++vtxIter; };
