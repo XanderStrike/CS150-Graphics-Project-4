@@ -321,15 +321,6 @@ static void drawScene() {
   sendModelViewNormalMatrix(curSS, MVM, NMVM);
   safe_glUniform3f(curSS.h_uColor, 0.0, 0.0, 1.0);
   g_octo->draw(curSS);  
-
-  // MVM = invEyeRbt * g_objectRbt[0] * Matrix4::makeTranslation(Cvec3(-2,0,0));
-  // NMVM = normalMatrix(MVM);
-  // sendModelViewNormalMatrix(curSS, MVM, NMVM);
-  // safe_glUniform3f(curSS.h_uColor, 1.0-g_animClock, 0.0, g_animClock); // use clock parameter to color object
-  //                  // color will cycle once as g_animClock goes from 0 to 1
-  // g_octo->draw(curSS);
-
-  // TODO: Remove cube. Add octahedron, tube, and sphere to scene and make them chase each other.
 }
 
 static void display() {

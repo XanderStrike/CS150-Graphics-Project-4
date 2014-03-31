@@ -8,6 +8,6 @@ void main() {
   if ( gl_FrontFacing ) {  
     fragColor = vec4(uColor, 1.0);
   } else {
-    fragColor = vec4(0.0, 1.0, 0.0, 1.0);
+    fragColor = vec4(1.0, 1.0, 1.0, 1.0);
   }
 }

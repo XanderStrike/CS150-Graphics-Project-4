@@ -1,0 +1,9 @@
+# Project 4: Equilibrium
+
+1. Create a repository.
+
+2. **Octahedron Geometry**. In the file geometrymaker.h, implement the functions makeOctahedron() and getOctahedronVbIbLen() (probably in that order). For this project, we won't be using texture coordinates or binormal and tangent vectors, so the correctness of those won't be graded.  You will, however, have to get the normal vectors correct. Problem 54 dealt with the normals of an octahedron. Use the makeCube() function as a guide. (Hint: since all the faces of an octahedron are triangles, and each face has its own normal vector, your vertex buffer will have the same length as your index buffer.  Make sure you orient the faces counterclockwise; that's how OpenGL knows if they are front- or back-facing.)  Add an octahdron to your scene.
+
+3. **Tube Geometry**. In the file geometrymaker.h, implement the functions makeTube() and getTubeVbIbLen(). This will define the geometry of a cylindrical tube that is open at the top and bottom.  As with 2, you won't be marked down if your texture coordinates and tangent and binormal vectors are wrong, but you might as well try to do them correctly.  Your lighting won't work (and you will be marked down) if your normals are wrong, or if your faces are oriented incorrectly.  Refer to Problem 51. Use the makeSphere() function as a guide. Add a tube to your scene, as well as a sphere.  You can get rid of the cube if you want.
+
+4. **Two-sided Solid Shader**. Make the solid shader color the back-facing triangles a different color.  You will only be able to observe if this is working by testing it with your tube; the inside of your tube should be back facing.  If you can't get the tube to work, you can test this with a plane made with makePlane().  The GLSL built in boolean variable gl_FrontFacing will be false if your fragment is back-facing.  Use this to your advantage. See below for what the scene should look like with the two-sided solid shader.
